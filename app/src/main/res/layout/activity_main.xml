@@ -4,6 +4,142 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/back">
+    <TextView
+        android:id="@+id/tvTime"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9:12 AM"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="34dp"/>
+    <ImageButton
+        android:id="@+id/btnSearch"
+        android:background="#00FFFFFF"
+        android:layout_width="40dp"
+        android:layout_height="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTime"
+        android:layout_marginEnd="23dp"
+        android:src="@drawable/ic_search_34"/>
+
+    <TextView
+        android:id="@+id/tvCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="San Francisco"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@id/tvTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="49dp"/>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tuesday, 12 April 2022"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCity"/>
+
+    <ImageView
+        android:id="@+id/imgSun"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/sun"
+        app:layout_constraintTop_toBottomOf="@id/tvDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="70dp"/>
+
+    <TextView
+        android:id="@+id/tvCelcious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:text="82.4"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgSun"
+        android:layout_marginEnd="50dp"/>
+
+    <TextView
+        android:id="@+id/tvDegree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="F"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/tvCelcious"
+        app:layout_constraintTop_toTopOf="@id/tvCelcious"
+        app:layout_constraintBottom_toBottomOf="@id/tvCelcious"
+        android:layout_marginStart="40dp"/>
+
+        <TextView
+            android:id="@+id/tvDayDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="It's a sunny Day."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDegree"
+            android:textColor="@color/white"
+            android:layout_marginTop="25dp"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:id="@+id/imgWind"
+        android:src="@drawable/wind"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvDayDescription"
+        app:layout_constraintTop_toBottomOf="@id/tvDayDescription"
+        android:layout_marginTop="13dp"/>
+
+    <TextView
+        android:id="@+id/tvWind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 mph"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@id/imgWind"
+        app:layout_constraintTop_toTopOf="@id/imgWind"
+        android:layout_marginStart="6dp"
+        app:layout_constraintBottom_toBottomOf="@id/imgWind"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:id="@+id/imgWater"
+        android:src="@drawable/wind"
+        app:layout_constraintStart_toEndOf="@id/tvWind"
+        app:layout_constraintTop_toTopOf="@id/tvWind"
+        app:layout_constraintBottom_toBottomOf="@id/tvWind"
+        android:layout_marginStart="44dp"/>
+
+    <TextView
+        android:id="@+id/tvWaterPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="60%"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/imgWater"
+        app:layout_constraintTop_toTopOf="@id/imgWater"
+        app:layout_constraintBottom_toBottomOf="@id/imgWater"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
