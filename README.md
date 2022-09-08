@@ -1,7 +1,9 @@
 # Weather-SwensonHe
 
 ## This is an Assessment Task for to build a weather app. 
-This app is built using kotlin, depedning on MVVM design pattern.
+This app is built using kotlin, depending on MVVM design pattern.
+### This app is able to run on Phones and Tablets
+** This app includes layout for portrait and Landscape screens specially when screen width is bigger than 600dp.
 ### Used libraries:
 1. lifecycle libraries for viewmodel, livedata, and savedstate.
 2. Retrofit2.

@@ -84,9 +84,13 @@ class SearchViewFragment: Fragment() {
         binding.arrowIcon.setOnClickListener { view: View ->
             onArrowPressed.showAppBar()
         }
+        binding.editTextSearchBox.setOnFocusChangeListener { view, b ->
+            binding.searchTIL.hint=null
+        }
         binding.editTextSearchBox.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 Log.i("Search", "BeforeText is called")
+
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -128,6 +132,7 @@ class SearchViewFragment: Fragment() {
 
     fun populateListView(weatherList: WeatherModel) {
         if (findMatch(weatherList.location.name , suggestedList)){
+            onSearchResultSelected.onSearchResultSelected(weatherList)
             return
         }else{
             suggestedList.add(weatherList.location.name)
@@ -142,8 +147,9 @@ class SearchViewFragment: Fragment() {
                 binding.linearList?.isVisible=true
             }
             binding.listView.setOnItemClickListener { adapterView, view, i, l ->
-                binding.editTextSearchBox.setText(adapterView.getItemAtPosition(i).toString())
-                onSearchResultSelected.onSearchResultSelected(weatherList)
+                val query= adapterView.getItemAtPosition(i).toString()
+                binding.editTextSearchBox.setText(query)
+                viewModel.getWeatherData(query, MyApiKey)
                 binding.linearList?.isVisible=false
             }
         }
