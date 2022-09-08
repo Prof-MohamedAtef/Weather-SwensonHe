@@ -26,4 +26,7 @@
             ?android:attr/colorBackground
         </item>
     </style>
+    <style name="YourCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
 </resources>
