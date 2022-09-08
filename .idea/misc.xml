@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/softwareProjects/WeatherApp/app/src/main/res/drawable/arrow_back_24.xml" value="0.196" />
+        <entry key="..\:/softwareProjects/WeatherApp/app/src/main/res/drawable/ic_search_24.xml" value="0.2455" />
+        <entry key="..\:/softwareProjects/WeatherApp/app/src/main/res/drawable/ic_search_34.xml" value="0.2455" />
         <entry key="..\:/softwareProjects/WeatherApp/app/src/main/res/drawable/radius_border.xml" value="0.196" />
+        <entry key="..\:/softwareProjects/WeatherApp/app/src/main/res/drawable/search_box_shape.xml" value="0.2455" />
         <entry key="..\:/softwareProjects/WeatherApp/app/src/main/res/layout-w600dp/activity_main.xml" value="0.2" />
         <entry key="..\:/softwareProjects/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/softwareProjects/WeatherApp/app/src/main/res/layout/appbar_layout.xml" value="0.20989583333333334" />
