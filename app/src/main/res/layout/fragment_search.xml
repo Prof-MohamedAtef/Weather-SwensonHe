@@ -22,12 +22,13 @@
         android:src="@drawable/arrow_back_24"
         android:background="@color/transparent"/>
         <com.google.android.material.textfield.TextInputLayout
+            app:hintTextAppearance="@android:style/TextAppearance.Small"
             app:layout_constraintStart_toEndOf="@+id/arrowIcon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/searchTIL"
             app:boxStrokeColor="@color/black"
-            app:hintTextColor="@color/black"
+            app:hintTextColor="@color/gray"
             android:textColor="@color/black"
             android:layout_width="0dp"
             android:layout_weight="4"
@@ -42,7 +43,7 @@
             app:endIconMode="clear_text"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp">
-<!--            android:drawableEnd="@drawable/close_icon"-->
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,5 +64,15 @@
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/dragUp"
+            android:visibility="gone"
+            android:layout_marginTop="17dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listView"
+            android:src="@drawable/arrow_up"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

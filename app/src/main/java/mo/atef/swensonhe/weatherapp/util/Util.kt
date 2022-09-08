@@ -1,7 +1,6 @@
 package mo.atef.swensonhe.weatherapp.util
 
 import android.view.View
-import android.view.Window
 import mo.atef.swensonhe.weatherapp.view.MainActivity
 import java.text.SimpleDateFormat
 
@@ -28,7 +27,9 @@ class Util {
             }
         }
 
+        val CITY: String="Cairo"
         var MainActivity: MainActivity? = null
+        const val MULTIPART = "multipart/form-data"
 
     }
 

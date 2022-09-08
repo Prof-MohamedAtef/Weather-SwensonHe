@@ -6,21 +6,22 @@ import mo.atef.swensonhe.weatherapp.models.WeatherModel
 import mo.atef.swensonhe.weatherapp.repositories.WeatherRepository
 import retrofit2.Call
 import retrofit2.Response
-import javax.security.auth.callback.Callback
 
 class WeatherViewModel constructor(private val repository: WeatherRepository):ViewModel() {
-    val weatherList=MutableLiveData<List<WeatherModel>>()
+    val weatherList=MutableLiveData<WeatherModel>()
     val errorMessage=MutableLiveData<String>()
 
-    fun getWeatherData(){
-        val response=repository.getWeatherData()
-        response.enqueue(object : retrofit2.Callback<List<WeatherModel>> {
-            override fun onResponse(call: Call<List<WeatherModel>>, response: Response<List<WeatherModel>>) {
+    fun getWeatherData(city: String, MyApiKey: String) {
+        val response = repository.getWeatherData(city, MyApiKey)
+        response.enqueue(object : retrofit2.Callback<WeatherModel> {
+            override fun onResponse(call: Call<WeatherModel>, response: Response<WeatherModel>) {
                 weatherList.postValue(response.body())
             }
-            override fun onFailure(call: Call<List<WeatherModel>>, t: Throwable) {
+
+            override fun onFailure(call: Call<WeatherModel>, t: Throwable) {
                 errorMessage.postValue(t.message)
             }
+
         })
     }
 }
