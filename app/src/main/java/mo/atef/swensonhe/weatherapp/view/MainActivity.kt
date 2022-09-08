@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.squareup.picasso.Picasso
 import mo.atef.swensonhe.weatherapp.R
 import mo.atef.swensonhe.weatherapp.databinding.ActivityMainBinding
 import mo.atef.swensonhe.weatherapp.fragments.AppBarFragment
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity(),OnArrowPressed, OnSearchPressed, OnSear
     private val retrofitService = RetrofitService.getInstance()
     lateinit var searchViewFragment:SearchViewFragment
     lateinit var appBarFragment: AppBarFragment
+    private val picasso = Picasso.get()
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
@@ -70,14 +72,20 @@ class MainActivity : AppCompatActivity(),OnArrowPressed, OnSearchPressed, OnSear
         binding.tvDate.text = weatherList.location.localtime
         binding.tvCelcious.text = weatherList.current.temp_f.toString()
         binding.tvDayDescription.text = weatherList.current.condition.text
-        binding.tvWind.text = weatherList.current.wind_mph.toString()
-        binding.tvWaterPercentage.text = weatherList.current.humidity.toString()
+        binding.tvWind.text = weatherList.current.wind_mph.toString()+" mph"
+        binding.tvWaterPercentage.text = weatherList.current.humidity.toString()+" %"
         binding.tvSunnyToday.text =
-            weatherList.current.temp_f.toString() + "/" + weatherList.current.humidity.toString()
+            weatherList?.current?.temp_f.toString() + "°/" + weatherList?.current?.humidity?.toString()+"°F"
         binding.tvRainyTomorrow.text =
-            weatherList.current.temp_f.toString() + "/" + weatherList.current.humidity.toString()
+                weatherList?.current?.temp_f.toString() + "°/" + weatherList?.current?.humidity?.toString()+"°F"
         binding.tvRainyFriday.text =
-            weatherList.current.temp_f.toString() + "/" + weatherList.current.humidity.toString()
+            weatherList?.current?.temp_f?.toString() + "°/" + weatherList?.current?.humidity?.toString()+"°F"
+        picasso.load(weatherList?.current?.condition?.icon
+        ).into(binding.imgSunSmall)
+        picasso.load(weatherList?.current?.condition?.icon
+        ).into(binding.imgCloudyTomorrow)
+        picasso.load(weatherList?.current?.condition?.icon
+        ).into(binding.imgCloudyFriday)
     }
 
     override fun showAppBar() {

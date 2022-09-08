@@ -32,6 +32,8 @@ class AppBarFragment:Fragment() {
             onSearchPressed.showSearchBar()
 
         }
+
+        binding.tvTime?.text= Util.getTime()
         return binding.root
     }
 

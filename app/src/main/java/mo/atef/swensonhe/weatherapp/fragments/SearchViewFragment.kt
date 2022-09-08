@@ -1,5 +1,6 @@
 package mo.atef.swensonhe.weatherapp.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -25,6 +26,8 @@ import mo.atef.swensonhe.weatherapp.util.Util
 import mo.atef.swensonhe.weatherapp.view.MainActivity
 import mo.atef.swensonhe.weatherapp.viewmodel.WeatherViewModel
 import mo.atef.swensonhe.weatherapp.viewmodel.WeatherViewModelFactory
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SearchViewFragment: Fragment() {
     lateinit var binding: FragmentSearchBinding
@@ -43,10 +46,10 @@ class SearchViewFragment: Fragment() {
         MyApiKey = mo.atef.swensonhe.weatherapp.BuildConfig.WeatherApiKey
         suggestedList= ArrayList()
         suggestedList.add("Cairo")
-        suggestedList.add("Los Anglos")
         suggestedList.add("New York")
         suggestedList.add(("Washington"))
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,14 +58,13 @@ class SearchViewFragment: Fragment() {
     ): View? {
         binding= DataBindingUtil.inflate(inflater, R.layout.fragment_search,container,false)
         Log.i("SearchViewFragment", "SearchView is called ...")
+        binding.tvTime?.text= Util.getTime()
         listAdapter = ArrayAdapter(requireActivity(),android.R.layout.simple_list_item_1,suggestedList)
         manipulateUI()
 
         viewModel = ViewModelProvider(this,
             WeatherViewModelFactory(WeatherRepository(retrofitService))
         ).get(WeatherViewModel::class.java)
-
-
 
         viewModel.weatherList.observe(viewLifecycleOwner, Observer { weatherList ->
             if (weatherList!=null){
@@ -103,6 +105,9 @@ class SearchViewFragment: Fragment() {
                 }
             }
         })
+        binding.dragUp.setOnClickListener { view:View->
+            onArrowPressed.showAppBar()
+        }
     }
 
     fun findMatch(s: String, strings: List<String>): Boolean {
@@ -120,6 +125,7 @@ class SearchViewFragment: Fragment() {
         return SearchViewFragment()
     }
 
+
     fun populateListView(weatherList: WeatherModel) {
         if (findMatch(weatherList.location.name , suggestedList)){
             return
@@ -128,15 +134,16 @@ class SearchViewFragment: Fragment() {
             listAdapter = ArrayAdapter(requireActivity(),android.R.layout.simple_list_item_1,suggestedList)
             binding.listView.adapter=listAdapter
             if (suggestedList.size>0){
-                binding.dragUp.isVisible=true
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    binding.dragUp.isVisible=false
+                } else {
+                    binding.dragUp.isVisible=true
+                }
+                binding.linearList?.isVisible=true
             }
             binding.listView.setOnItemClickListener { adapterView, view, i, l ->
                 binding.editTextSearchBox.setText(adapterView.getItemAtPosition(i).toString())
                 onSearchResultSelected.onSearchResultSelected(weatherList)
-            }
-
-            binding.dragUp.setOnClickListener { view:View->
-                onArrowPressed.showAppBar()
             }
         }
     }
