@@ -1,11 +1,12 @@
 package mo.atef.swensonhe.weatherapp.view
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import mo.atef.swensonhe.weatherapp.R
 import mo.atef.swensonhe.weatherapp.databinding.ActivityMainBinding
 import mo.atef.swensonhe.weatherapp.fragments.AppBarFragment
@@ -28,7 +29,6 @@ class MainActivity : AppCompatActivity(),OnArrowPressed, OnSearchPressed, OnSear
     private val retrofitService = RetrofitService.getInstance()
     lateinit var searchViewFragment:SearchViewFragment
     lateinit var appBarFragment: AppBarFragment
-    private val picasso = Picasso.get()
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
@@ -76,16 +76,44 @@ class MainActivity : AppCompatActivity(),OnArrowPressed, OnSearchPressed, OnSear
         binding.tvWaterPercentage.text = weatherList.current.humidity.toString()+" %"
         binding.tvSunnyToday.text =
             weatherList?.current?.temp_f.toString() + "°/" + weatherList?.current?.humidity?.toString()+"°F"
-        binding.tvRainyTomorrow.text =
-                weatherList?.current?.temp_f.toString() + "°/" + weatherList?.current?.humidity?.toString()+"°F"
-        binding.tvRainyFriday.text =
-            weatherList?.current?.temp_f?.toString() + "°/" + weatherList?.current?.humidity?.toString()+"°F"
-        picasso.load(weatherList?.current?.condition?.icon
-        ).into(binding.imgSunSmall)
-        picasso.load(weatherList?.current?.condition?.icon
-        ).into(binding.imgCloudyTomorrow)
-        picasso.load(weatherList?.current?.condition?.icon
-        ).into(binding.imgCloudyFriday)
+
+
+        val forecastList= weatherList?.forecast?.forecastday
+
+        if (forecastList!=null){
+            for (i in 1..3) {
+                if (i==1){
+                    Glide
+                        .with(this)
+                        .load(Util.Companion.HTTPS+forecastList?.get(i).day?.condition?.icon)
+                        .centerCrop()
+                        .into(binding.imgSunSmall)
+                    Glide
+                        .with(this)
+                        .load(Util.Companion.HTTPS+forecastList?.get(i).day?.condition?.icon)
+                        .centerCrop()
+                        .into(binding.imgSun)
+                }else if(i==2){
+                    Glide
+                        .with(this)
+                        .load(Util.Companion.HTTPS+forecastList.get(i).day.condition?.icon)
+                        .centerCrop()
+                        .into(binding.imgCloudyTomorrow)
+                    binding.tvRainyTomorrow.text =
+                        forecastList?.get(i).day?.avgtemp_f?.toString() + "°/" + forecastList.get(i).day?.avghumidity?.toString()+"°F"
+                }else if (i==3){
+                    Glide
+                        .with(this)
+                        .load(Util.Companion.HTTPS+forecastList.get(i).day.condition?.icon)
+                        .centerCrop()
+                        .placeholder(R.drawable.wind)
+                        .into(binding.imgCloudyFriday)
+
+                    binding.tvRainyFriday.text =
+                        forecastList?.get(i).day?.avgtemp_f?.toString() + "°/" + forecastList.get(i).day?.avghumidity?.toString()+"°F"
+                }
+            }
+        }
     }
 
     override fun showAppBar() {

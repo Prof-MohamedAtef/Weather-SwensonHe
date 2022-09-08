@@ -51,6 +51,7 @@ class Util {
             }
         }
 
+        val HTTPS: String = "https:"
         val CITY: String="Cairo"
         var MainActivity: MainActivity? = null
         const val MULTIPART = "multipart/form-data"

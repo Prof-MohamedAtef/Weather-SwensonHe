@@ -21,7 +21,9 @@ interface RetrofitService {
     fun makeWeatherRequest(
         @Query ("key") apiToken: String?,
         @Query("q") city:String?,
-        @Query("aqi") aqi:String?
+        @Query("aqi") aqi:String?,
+        @Query("days") days:String?,
+        @Query("alerts") alerts:String?
     ): Call<WeatherModel>
 
     companion object{

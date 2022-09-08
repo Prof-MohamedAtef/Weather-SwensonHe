@@ -144,8 +144,12 @@ class SearchViewFragment: Fragment() {
             binding.listView.setOnItemClickListener { adapterView, view, i, l ->
                 binding.editTextSearchBox.setText(adapterView.getItemAtPosition(i).toString())
                 onSearchResultSelected.onSearchResultSelected(weatherList)
+                binding.linearList?.isVisible=false
             }
         }
     }
-    // TODO: pedning change edittext layout in portrait layout
+    // TODO: pending change edittext layout in portrait layout
+    // TODO: pending hint floating in edittext on portrait and landscape
+    // TODO: displaying images
+    // TODO: check null values for forecastted data
 }
