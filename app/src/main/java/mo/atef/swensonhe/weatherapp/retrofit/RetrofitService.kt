@@ -2,6 +2,7 @@ package mo.atef.swensonhe.weatherapp.retrofit
 
 import android.util.Log
 import com.google.gson.GsonBuilder
+import com.google.gson.TypeAdapterFactory
 import mo.atef.swensonhe.weatherapp.models.WeatherModel
 import mo.atef.swensonhe.weatherapp.util.Util
 import okhttp3.Interceptor
@@ -27,8 +28,10 @@ interface RetrofitService {
     ): Call<WeatherModel>
 
     companion object{
+
         var gson = GsonBuilder()
             .setLenient()
+            .serializeNulls()
             .create()
 
         var retrofitService:RetrofitService?=null

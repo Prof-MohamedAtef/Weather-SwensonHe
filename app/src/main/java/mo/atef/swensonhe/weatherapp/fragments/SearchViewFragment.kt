@@ -154,8 +154,6 @@ class SearchViewFragment: Fragment() {
             }
         }
     }
-    // TODO: pending change edittext layout in portrait layout
-    // TODO: pending hint floating in edittext on portrait and landscape
     // TODO: displaying images
     // TODO: check null values for forecastted data
 }

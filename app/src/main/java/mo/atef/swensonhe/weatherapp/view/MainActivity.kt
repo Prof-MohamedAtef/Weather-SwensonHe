@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity(),OnArrowPressed, OnSearchPressed, OnSear
                     R.id.searchFrame,
                     it
                 ).commitAllowingStateLoss()
-
         }
     }
 
