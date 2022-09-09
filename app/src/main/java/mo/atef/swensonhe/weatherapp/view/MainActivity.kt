@@ -66,52 +66,45 @@ class MainActivity : AppCompatActivity(),OnArrowPressed, OnSearchPressed, OnSear
     }
 
     private fun bindWeatherData(weatherList: WeatherModel) {
+        val weatherIcon=weatherList.current.condition.icon
+        val weatherHumidity=weatherList.current.humidity
+        val weatherTempF=weatherList.current.humidity
         binding.tvCity.text = weatherList.location.name
         binding.tvDate.text = weatherList.location.localtime
         binding.tvCelcious.text = weatherList.current.temp_f.toString()
         binding.tvDayDescription.text = weatherList.current.condition.text
-        binding.tvWind.text = weatherList.current.wind_mph.toString()+" mph"
-        binding.tvWaterPercentage.text = weatherList.current.humidity.toString()+" %"
+        binding.tvWind.text = weatherList.current.wind_mph.toString() + " mph"
+        binding.tvWaterPercentage.text = weatherList.current.humidity.toString() + " %"
         binding.tvSunnyToday.text =
-            weatherList?.current?.temp_f.toString() + "°/" + weatherList?.current?.humidity?.toString()+"°F"
+            weatherList?.current?.temp_f.toString() + "°/" + weatherList?.current?.humidity?.toString() + "°F"
 
+        Glide
+            .with(this)
+            .load(Util.Companion.HTTPS + weatherIcon)
+            .centerCrop()
+            .into(binding.imgSunSmall)
+        Glide
+            .with(this)
+            .load(Util.Companion.HTTPS + weatherIcon)
+            .centerCrop()
+            .into(binding.imgSun)
 
-        val forecastList= weatherList?.forecast?.forecastday
+        Glide
+            .with(this)
+            .load(Util.Companion.HTTPS + weatherIcon)
+            .centerCrop()
+            .into(binding.imgCloudyTomorrow)
+        binding.tvRainyTomorrow.text =
+            weatherTempF.toString() + "°/" + weatherHumidity.toString() + "°F"
+        Glide
+            .with(this)
+            .load(Util.Companion.HTTPS + weatherIcon)
+            .centerCrop()
+            .placeholder(R.drawable.wind)
+            .into(binding.imgCloudyFriday)
 
-        if (forecastList!=null){
-            for (i in 1..3) {
-                if (i==1){
-                    Glide
-                        .with(this)
-                        .load(Util.Companion.HTTPS+forecastList?.get(i).day?.condition?.icon)
-                        .centerCrop()
-                        .into(binding.imgSunSmall)
-                    Glide
-                        .with(this)
-                        .load(Util.Companion.HTTPS+forecastList?.get(i).day?.condition?.icon)
-                        .centerCrop()
-                        .into(binding.imgSun)
-                }else if(i==2){
-                    Glide
-                        .with(this)
-                        .load(Util.Companion.HTTPS+forecastList.get(i).day.condition?.icon)
-                        .centerCrop()
-                        .into(binding.imgCloudyTomorrow)
-                    binding.tvRainyTomorrow.text =
-                        forecastList?.get(i).day?.avgtemp_f?.toString() + "°/" + forecastList.get(i).day?.avghumidity?.toString()+"°F"
-                }else if (i==3){
-                    Glide
-                        .with(this)
-                        .load(Util.Companion.HTTPS+forecastList.get(i).day.condition?.icon)
-                        .centerCrop()
-                        .placeholder(R.drawable.wind)
-                        .into(binding.imgCloudyFriday)
-
-                    binding.tvRainyFriday.text =
-                        forecastList?.get(i).day?.avgtemp_f?.toString() + "°/" + forecastList.get(i).day?.avghumidity?.toString()+"°F"
-                }
-            }
-        }
+        binding.tvRainyFriday.text =
+            weatherTempF.toString() + "°/" + weatherHumidity.toString() + "°F"
     }
 
     override fun showAppBar() {
