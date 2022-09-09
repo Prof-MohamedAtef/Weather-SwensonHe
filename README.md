@@ -27,3 +27,11 @@ This app is built using kotlin, depending on MVVM design pattern.
 
 ## Screenshots of the app
 
+![6_swen](https://user-images.githubusercontent.com/16711483/189366998-3c7ca58c-e060-48e1-b30d-05653a0c1bab.png)
+![7_swen](https://user-images.githubusercontent.com/16711483/189367007-3431d9bb-4b17-4260-8723-46c14426ef32.png)
+![8_swen](https://user-images.githubusercontent.com/16711483/189367010-b440a11f-b066-48fc-85b0-c2f8739f881e.png)
+![1_swen](https://user-images.githubusercontent.com/16711483/189367021-235d9352-8095-4189-aa83-ba0710932180.png)
+![2_swen](https://user-images.githubusercontent.com/16711483/189367034-03f74f46-3bdc-4b9d-8322-00115ed5a172.png)
+![3_swen](https://user-images.githubusercontent.com/16711483/189367040-1fe538b6-892d-45e9-8fcc-812a31a22423.png)
+![4_swen](https://user-images.githubusercontent.com/16711483/189367054-52c9922a-598e-4b2f-9fff-0a4e00f20324.png)
+![5_swen](https://user-images.githubusercontent.com/16711483/189367058-17768244-d231-49a6-9ae9-d3171cb5b1b8.png)
