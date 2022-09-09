@@ -2,7 +2,6 @@ package mo.atef.swensonhe.weatherapp.retrofit
 
 import android.util.Log
 import com.google.gson.GsonBuilder
-import com.google.gson.TypeAdapterFactory
 import mo.atef.swensonhe.weatherapp.models.WeatherModel
 import mo.atef.swensonhe.weatherapp.util.Util
 import okhttp3.Interceptor
